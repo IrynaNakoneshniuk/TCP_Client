@@ -28,7 +28,10 @@ namespace TCP_Client
             TCP client = new TCP("127.0.0.1",8080);
             client.GetConnection();
             Task.Run(async () => { await client.SendMsg(mv.OutMsg); });
-            mv.OutMsg= await client.GetMsg();
+            while (mv.OutMsg!="Bye!")
+            {
+                mv.OutMsg = await client.GetMsg();
+            }
         }
     }
 }
